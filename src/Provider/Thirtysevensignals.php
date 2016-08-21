@@ -84,7 +84,7 @@ class Thirtysevensignals extends AbstractProvider
      *
      * @param object $response
      * @param AccessToken $token
-     * @return ThirtysevensignalsUser
+     * @return ThirtysevensignalsResourceOwner
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {

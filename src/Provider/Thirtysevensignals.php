@@ -23,6 +23,18 @@ class Thirtysevensignals extends AbstractProvider
     }
 
     /**
+     * Builds the authorization URL's query string.
+     *
+     * @param  array $params Query parameters
+     * @return string Query string
+     */
+    protected function getAuthorizationQuery(array $params)
+    {
+        $params['type'] = 'web_server';
+        return $this->buildQueryString($params);
+    }
+
+    /**
      * Get access token url to retrieve token
      *
      * @return string
@@ -30,6 +42,18 @@ class Thirtysevensignals extends AbstractProvider
     public function getBaseAccessTokenUrl(array $params)
     {
         return 'https://launchpad.37signals.com/authorization/token';
+    }
+
+    /**
+     * Returns the request body for requesting an access token.
+     *
+     * @param  array $params
+     * @return string
+     */
+    protected function getAccessTokenBody(array $params)
+    {
+        $params['type'] = 'web_server';
+        return $this->buildQueryString($params);
     }
 
     /**
@@ -70,6 +94,7 @@ class Thirtysevensignals extends AbstractProvider
         $errors = [
             'error_description',
             'error.message',
+            'error',
         ];
 
         array_map(function ($error) use ($response, $data) {

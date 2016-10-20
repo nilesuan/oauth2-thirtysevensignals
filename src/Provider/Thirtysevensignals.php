@@ -52,7 +52,7 @@ class Thirtysevensignals extends AbstractProvider
      */
     protected function getAccessTokenBody(array $params)
     {
-        $params['type'] = 'web_server';
+        $params['type'] = ($params['grant_type'] === 'refresh_token') ? 'refresh' : 'web_server';
         return $this->buildQueryString($params);
     }
 
